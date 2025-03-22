@@ -5,7 +5,7 @@ import { AddProductThunk } from '../services/Actions/ProductAction';
 
 const ProductForm = () => {
 
-  const { isSuccess } = useSelector((state) => state.ProductReducer);
+  const { isSuccess, isLoading } = useSelector((state) => state.ProductReducer);
   const [product, setProduct] = useState({
     name: '',
     price: '',
@@ -37,6 +37,9 @@ const ProductForm = () => {
 
   return (
     <>
+      <div className="showAllProduct">
+        <Link to={"/AllProducts"} className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 !no-underline" >Show All Products</Link>
+      </div>
       <div className="max-w-lg mx-auto p-4 border-2 border-gray-300 rounded-lg shadow-md bg-white">
         <h2 className="text-2xl font-semibold text-center mb-4">Add Product</h2>
         <form action={"/api/products"} method='post'>
@@ -56,7 +59,13 @@ const ProductForm = () => {
           </div>
 
           <div className="mb-4 flex justify-center items-center">
-            <Link to={"#"} className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleSubmit}>Submit</Link>
+            <Link to={"#"} className="px-3 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 !no-underline" onClick={handleSubmit}>
+            {isLoading ?
+              <div className="loading-spiner" >
+                <span className="spinner-border spinner-border-sm"></span>
+                <span role="status" className='ms-1'>Loading...</span>
+              </div> : 'Add Product'}
+            </Link>
           </div>
         </form>
       </div>

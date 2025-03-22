@@ -27,12 +27,25 @@ export const UpdateProductAction = (data) => {
     };
 }
 
+const DeleteProductAction = () => {
+    return {
+        type: "DELETE_PRODUCT", 
+    };
+}
+
+const Lodding = () => {
+    return {
+        type: "LODING"
+    }
+}
+
 // Thunk Action
 
 //get product
 export const GetProductThunk = () => {
     return async (dispatch) => {
         try {
+            dispatch(Lodding());
             const response = await axios.get(`${ApiUrl}/api/products`);
             if (response.status === 200) {
                 dispatch(GetProductAction(response.data));
@@ -47,6 +60,7 @@ export const GetProductThunk = () => {
 export const AddProductThunk = (productData) => {
     return async (dispatch) => {
         try {
+            dispatch(Lodding());
             const response = await axios.post(`${ApiUrl}/api/products`, productData, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -82,6 +96,7 @@ export const GetSingleProductThunk = (productId) => {
 export const UpdateProductThunk = (productId, productData) => {
     return async (dispatch) => {
         try {
+            dispatch(Lodding());
             const response = await axios.put(`${ApiUrl}/api/products/${productId}`, productData);
             if (response.status === 200) {
                 dispatch(UpdateProductAction(response.data));
@@ -96,8 +111,10 @@ export const UpdateProductThunk = (productId, productData) => {
 export const DeleteProductThunk = (productId) => {
     return async (dispatch) => {
         try {
+            dispatch(Lodding());
             const response = await axios.delete(`${ApiUrl}/api/products/${productId}`);
             if (response.status === 200) {
+                dispatch(DeleteProductAction());
                 dispatch(GetProductThunk());
             }
         } catch (error) {

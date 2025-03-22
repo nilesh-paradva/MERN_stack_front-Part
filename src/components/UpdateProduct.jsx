@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router';
 import { GetSingleProductThunk, UpdateProductThunk } from '../services/Actions/ProductAction';
 
 const Updateproduct = () => {
-  const { isSuccess, product } = useSelector((state) => state.ProductReducer);
+  const { isSuccess, product, isLoading } = useSelector((state) => state.ProductReducer);
   const [products, setProducts] = useState({
     name: '',
     price: '',
@@ -73,7 +73,13 @@ const Updateproduct = () => {
           </div>
 
           <div className="mb-4 flex justify-center items-center">
-            <Link to={"#"} className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" onClick={handleSubmit}>Update Product</Link>
+            <Link to={"#"} className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 !no-underline" onClick={handleSubmit}>
+            {isLoading ?
+              <div className="loading-spiner" >
+                <span className="spinner-border spinner-border-sm"></span>
+                <span role="status" className='ms-1 inline-block'>Loading...</span>
+              </div> : 'Update Product'}
+            </Link>
           </div>
         </form>
       </div>
