@@ -1,5 +1,5 @@
 import axios from 'axios';
-const ApiUrl = "http://localhost:5000";
+const ApiUrl = "https://mern-stack-frist-project.onrender.com";
 
 export const GetProductAction = (product) => {
     return {

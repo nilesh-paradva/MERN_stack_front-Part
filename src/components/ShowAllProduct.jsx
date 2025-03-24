@@ -51,7 +51,7 @@ const ShowAllProduct = () => {
                 <div className="col-lg-4 col-md-6" key={product._id}>
                   <div className=" bg-white shadow-lg rounded-lg overflow-hidden">
                     <div className="product-image p-2">
-                      <img className="w-full h-48 object-cover rounded-lg" src={(product.imagePath) ? `http://localhost:5000/ProductImgUpload/${product.imagePath}` : (ProductImage)} alt={product.name} />
+                      <img className="w-full h-48 object-cover rounded-lg" src={(product.imagePath) ? `https://mern-stack-frist-project.onrender.com/ProductImgUpload/${product.imagePath}` : (ProductImage)} alt={product.name} />
                     </div>
                     <div className="p-4">
                       <h2 className="text-xl font-semibold text-gray-800">{product.name}</h2>
