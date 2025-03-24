@@ -1,5 +1,5 @@
 import axios from 'axios';
-const ApiUrl = "https://mern-stack-frist-project.onrender.com";
+const ApiUrl = "http://localhost:5000";
 
 export const GetProductAction = (product) => {
     return {
@@ -58,16 +58,15 @@ export const GetProductThunk = () => {
 
 //add product
 export const AddProductThunk = (productData) => {
+
+    console.log("productData", productData);
+
     return async (dispatch) => {
         try {
             dispatch(Lodding());
-            const response = await axios.post(`${ApiUrl}/api/products`, productData, {
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
+            const response = await axios.post(`${ApiUrl}/api/products`, productData);
             if (response.status === 201) {
-                dispatch(AddProductAction(productData));
+                dispatch(AddProductAction());
             }
         } catch (error) {
             console.error('Error adding product:', error);
@@ -77,6 +76,7 @@ export const AddProductThunk = (productData) => {
         }
     };
 };
+
 
 // Single product
 export const GetSingleProductThunk = (productId) => {
@@ -94,6 +94,7 @@ export const GetSingleProductThunk = (productId) => {
 
 // update product
 export const UpdateProductThunk = (productId, productData) => {
+    
     return async (dispatch) => {
         try {
             dispatch(Lodding());
