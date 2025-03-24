@@ -58,9 +58,6 @@ export const GetProductThunk = () => {
 
 //add product
 export const AddProductThunk = (productData) => {
-
-    console.log("productData", productData);
-
     return async (dispatch) => {
         try {
             dispatch(Lodding());
