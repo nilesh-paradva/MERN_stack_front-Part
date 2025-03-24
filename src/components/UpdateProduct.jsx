@@ -27,9 +27,9 @@ const Updateproduct = () => {
     formData.append('name', products.name);
     formData.append('price', products.price);
 
-    if (products.imagePath) {
+    // if (products.imagePath) {
       formData.append('imagePath', products.imagePath); 
-    }
+    // }
 
     dispatch(UpdateProductThunk(id, formData));
   };
